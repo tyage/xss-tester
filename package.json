@@ -7,7 +7,7 @@
     "test": "test"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha -s 0 --compilers js:babel-register --recursive"
   },
   "repository": {
     "type": "git",
@@ -18,5 +18,10 @@
   "bugs": {
     "url": "https://github.com/tyage/xss-tester/issues"
   },
-  "homepage": "https://github.com/tyage/xss-tester#readme"
+  "homepage": "https://github.com/tyage/xss-tester#readme",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.0",
+    "mocha": "^3.5.3"
+  }
 }
