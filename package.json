@@ -23,5 +23,9 @@
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.6.0",
     "mocha": "^3.5.3"
+  },
+  "dependencies": {
+    "chrome-launcher": "^0.8.0",
+    "chrome-remote-interface": "^0.25.1"
   }
 }
