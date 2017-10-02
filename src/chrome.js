@@ -8,18 +8,19 @@ const launchChromeOnce = async () => {
   }
 
   chromeProcess = await launch({
-    chromeFlags: ['--headless']
+    chromeFlags: ['--headless'],
+    enableExtensions: true
   });
   return chromeProcess;
 };
 
 let CDP = null;
-const launchCDPOnce = async () => {
+export const launchCDPOnce = async () => {
   if (CDP !== null) {
     return CDP;
   }
 
-  return new Promise((resolve, reject) => {
+  return new Promise(async (resolve, reject) => {
     const chromeProcess = await launchChromeOnce();
     chrome({
       port: chromeProcess.port
