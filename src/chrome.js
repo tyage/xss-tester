@@ -2,27 +2,23 @@ import { launch } from 'chrome-launcher';
 import chrome from 'chrome-remote-interface';
 
 let chromeProcess = null;
-const launchChromeOnce = async () => {
+const launchChromeOnce = async (chromeOption) => {
   if (chromeProcess !== null) {
     return chromeProcess;
   }
 
-  chromeProcess = await launch({
-    //chromeFlags: ['--headless'],
-    chromeFlags: ['--load-extension=./extension'],
-    enableExtensions: true,
-  });
+  chromeProcess = await launch(chromeOption);
   return chromeProcess;
 };
 
 let CDP = null;
-export const launchCDPOnce = async () => {
+export const launchCDPOnce = async (chromeOption) => {
   if (CDP !== null) {
     return CDP;
   }
 
   return new Promise(async (resolve, reject) => {
-    const chromeProcess = await launchChromeOnce();
+    const chromeProcess = await launchChromeOnce(chromeOption);
     chrome({
       port: chromeProcess.port
     }, async (client) => {

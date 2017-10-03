@@ -16,12 +16,12 @@ describe('simple xss tester', function() {
     app.listen(3000);
   });
 
-  it ('detect stored xss when alert up', async () => {
+  it ('detect stored xss if alert is up', async () => {
     const url = 'http://localhost:3000/stored';
     const result = await xssTester.test(url);
     assert.equal(result, true);
   });
-  it ('detect reflected xss when alert up', async () => {
+  it ('detect reflected xss if alert is up', async () => {
     const url = 'http://localhost:3000/reflected?q=<script>alert(1)</script>';
     const result = await xssTester.test(url);
     assert.equal(result, true);
