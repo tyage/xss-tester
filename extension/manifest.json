@@ -1,0 +1,22 @@
+{
+
+  "manifest_version": 2,
+  "name": "XSS Tester Extension",
+  "version": "1.0",
+
+  "description": "An Extension for XSS Tester.",
+
+  "icons": {
+    "48": "icons/48.png"
+  },
+
+  "content_scripts": [
+    {
+      "all_frames": true,
+      "matches": ["*://*/*"],
+      "js": ["tester.js"],
+      "run_at": "document_start"
+    }
+  ]
+
+}
