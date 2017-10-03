@@ -8,8 +8,9 @@ const launchChromeOnce = async () => {
   }
 
   chromeProcess = await launch({
-    chromeFlags: ['--headless'],
-    enableExtensions: true
+    //chromeFlags: ['--headless'],
+    chromeFlags: ['--load-extension=./extension'],
+    enableExtensions: true,
   });
   return chromeProcess;
 };

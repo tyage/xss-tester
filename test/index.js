@@ -8,7 +8,6 @@ describe('simple xss tester', function() {
   before(() => {
     const app = express();
     app.get('/reflected', (req, res) => {
-      console.log(req.query);
       res.send(req.query.q);
     });
     app.get('/stored', (req, res) => {
