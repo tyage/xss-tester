@@ -26,4 +26,10 @@ describe('simple xss tester', function() {
     const result = await xssTester.test(url);
     assert.equal(result, true);
   });
+
+  it ('pass normal response', async () => {
+    const url = 'http://localhost:3000/reflected?q=some%20query';
+    const result = await xssTester.test(url);
+    assert.equal(result, false);
+  });
 });
