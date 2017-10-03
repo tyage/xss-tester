@@ -18,18 +18,28 @@ describe('simple xss tester', function() {
 
   it ('detect stored xss if alert is up', async () => {
     const url = 'http://localhost:3000/stored';
-    const result = await xssTester.test(url);
+    const result = await xssTester.checkPopup(url);
     assert.equal(result, true);
   });
   it ('detect reflected xss if alert is up', async () => {
     const url = 'http://localhost:3000/reflected?q=<script>alert(1)</script>';
-    const result = await xssTester.test(url);
+    const result = await xssTester.checkPopup(url);
+    assert.equal(result, true);
+  });
+  it ('detect reflected xss if prompt is up', async () => {
+    const url = 'http://localhost:3000/reflected?q=<script>prompt(1)</script>';
+    const result = await xssTester.checkPopup(url);
+    assert.equal(result, true);
+  });
+  it ('detect reflected xss if confirm is up', async () => {
+    const url = 'http://localhost:3000/reflected?q=<script>confirm(1)</script>';
+    const result = await xssTester.checkPopup(url);
     assert.equal(result, true);
   });
 
   it ('pass normal response', async () => {
     const url = 'http://localhost:3000/reflected?q=some%20query';
-    const result = await xssTester.test(url);
+    const result = await xssTester.checkPopup(url);
     assert.equal(result, false);
   });
 });
